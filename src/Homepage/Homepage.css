@@ -1,0 +1,43 @@
+.search-container {
+	margin: 20px 0;
+	padding: 0 15px;
+}
+
+.search-input {
+	width: 100%;
+	padding: 12px;
+	font-size: 16px;
+	border: 2px solid #ddd;
+	border-radius: 25px;
+	outline: none;
+}
+
+/* Flex 2 */
+.mainPage {
+	display: flex;
+	flex-direction: row;
+}
+
+.movies-grid {
+	flex: 3;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	padding: 20px;
+}
+
+.trending-movie-grid {
+	flex: 1;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.loading,
+.error {
+	text-align: center;
+	padding: 20px;
+	font-size: 18px;
+}
+
+.error {
+	color: #ff4444;
+}

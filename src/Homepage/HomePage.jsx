@@ -41,7 +41,7 @@ export default function HomePage() {
 				.catch((err) => console.error(err));
 		};
 		getTrendingMovies();
-	});
+	}, [trendingMovies]);
 
 	useEffect(() => {
 		const fetchData = async () => {

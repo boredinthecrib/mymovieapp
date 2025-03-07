@@ -1,3 +1,11 @@
+.container {
+	padding: 30px;
+}
+
+.welcomeHeader {
+	text-align: center;
+}
+
 .search-container {
 	margin: 20px 0;
 	padding: 0 15px;
@@ -25,8 +33,13 @@
 	padding: 20px;
 }
 
-.trending-movie-grid {
+.trending-movies {
+	border-left: 6px solid black;
+	padding-left: 18px;
 	flex: 1;
+}
+
+.trending-movie-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }

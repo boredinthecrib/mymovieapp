@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import "./Homepage.css";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
 	const userName = localStorage.getItem("username") || "";
@@ -9,6 +10,7 @@ export default function HomePage() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [trendingMovies, setTrendingMvoies] = useState([]);
+	const navigate = useNavigate();
 
 	// Add debounce to prevent too many API calls
 	const debounce = (func, delay) => {
@@ -41,7 +43,7 @@ export default function HomePage() {
 				.catch((err) => console.error(err));
 		};
 		getTrendingMovies();
-	}, [trendingMovies]);
+	}, []);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -88,10 +90,18 @@ export default function HomePage() {
 		return () => clearTimeout(debouncedFetch);
 	}, [searchQuery]);
 
+	const routeToProfile = (e) => {
+		navigate("/profile");
+	};
 	return (
 		<div className="container">
 			<div className="welcomeHeader">
-				<h3>{userName ? `Welcome, ${userName}!` : "Welcome, Guest!"}</h3>
+				<div>
+					<h3>{userName ? `Welcome, ${userName}!` : "Welcome, Guest!"}</h3>
+				</div>
+				<div>
+					<button onClick={routeToProfile}> Profile Page</button>
+				</div>
 			</div>
 
 			{/* Add search form */}
@@ -115,7 +125,7 @@ export default function HomePage() {
 							key={movie.id}
 							movieId={movie.id}
 							title={movie.title}
-							rating={movie.vote_average}
+							rating={Math.floor(parseFloat(movie.vote_average))}
 							posterUrl={movie.poster_path}
 							overview={movie.overview}
 							year={movie.release_date}
@@ -131,7 +141,7 @@ export default function HomePage() {
 								key={movie.id}
 								year={movie.release_date}
 								movieId={movie.id}
-								rating={movie.vote_average}
+								rating={Math.floor(parseFloat(movie.vote_average))}
 								title={movie.title}
 								posterUrl={movie.poster_path}
 								overview={movie.overview}
